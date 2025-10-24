@@ -32,9 +32,17 @@ services:
       POSTGRES_DB: main_db
       REDIS_HOST: redis
       REDIS_PORT: 6379
+      DEBUG: 1
+      DB_HOST: postgres
+      DB_NAME: main_db
+      DB_USER: devuser
+      DB_PASS: devpass
     depends_on:
       - postgres
       - redis
+    ports:
+      - "8000:8000"
 
 volumes:
   pgdata:
+
