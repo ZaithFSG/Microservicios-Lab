@@ -43,6 +43,26 @@ services:
     ports:
       - "8000:8000"
 
+  blog:
+    build: 
+      context: ./blog-service/app
+      dockerfile: Dockerfile
+    container_name: blog_service
+    restart: always
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: devuser
+      POSTGRES_PASSWORD: devpass
+      POSTGRES_DB: main_db
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      DEBUG: 1
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - "8001:8001"
+
 volumes:
   pgdata:
-
